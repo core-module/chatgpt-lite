@@ -49,7 +49,7 @@ const getApiConfig = () => {
     }
     apiUrl = `${apiBaseUrl}/openai/deployments/${deployment}/chat/completions?api-version=${apiVersion}`
     apiKey = process.env.AZURE_OPENAI_API_KEY || ''
-    model = '' // Azure Open AI always ignores the model and decides based on the deployment name passed through.
+    model = 'gpt-4' // Azure Open AI always ignores the model and decides based on the deployment name passed through.
   } else {
     let apiBaseUrl = process.env.OPENAI_API_BASE_URL || 'https://api.openai.com'
     if (apiBaseUrl && apiBaseUrl.endsWith('/')) {
