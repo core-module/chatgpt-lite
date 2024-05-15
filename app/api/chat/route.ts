@@ -42,7 +42,7 @@ const getApiConfig = () => {
   let model: string
   if (useAzureOpenAI) {
     let apiBaseUrl = process.env.AZURE_OPENAI_API_BASE_URL
-    const apiVersion = '2024-02-01'
+    const apiVersion = '2023-05-15'
     const deployment = process.env.AZURE_OPENAI_DEPLOYMENT || ''
     if (apiBaseUrl && apiBaseUrl.endsWith('/')) {
       apiBaseUrl = apiBaseUrl.slice(0, -1)
