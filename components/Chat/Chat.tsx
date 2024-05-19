@@ -15,7 +15,7 @@ import toast from 'react-hot-toast'
 import { AiOutlineClear, AiOutlineLoading3Quarters, AiOutlineUnorderedList } from 'react-icons/ai'
 import { FiSend } from 'react-icons/fi'
 import ChatContext from './chatContext'
-import { Chat, ChatMessage } from './interface'
+import type { Chat, ChatMessage } from './interface'
 import Message from './Message'
 
 import './index.scss'
@@ -274,7 +274,7 @@ const Chat = (props: ChatProps, ref: any) => {
                 <FiSend className="size-4" />
               </IconButton>
             </Tooltip>
-            <Tooltip content={'Clear Message'}>
+            <Tooltip content={'Clear History'}>
               <IconButton
                 variant="soft"
                 color="gray"

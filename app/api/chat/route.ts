@@ -1,6 +1,8 @@
 import { createParser, ParsedEvent, ReconnectInterval } from 'eventsource-parser'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const runtime = 'edge'
+
 export interface Message {
   role: string
   content: string
@@ -42,7 +44,7 @@ const getApiConfig = () => {
   let model: string
   if (useAzureOpenAI) {
     let apiBaseUrl = process.env.AZURE_OPENAI_API_BASE_URL
-    const apiVersion = '2023-05-15'
+    const apiVersion = '2024-02-01'
     const deployment = process.env.AZURE_OPENAI_DEPLOYMENT || ''
     if (apiBaseUrl && apiBaseUrl.endsWith('/')) {
       apiBaseUrl = apiBaseUrl.slice(0, -1)
@@ -81,7 +83,7 @@ const getOpenAIStream = async (
     body: JSON.stringify({
       model: model,
       frequency_penalty: 0,
-      max_tokens: 2000,
+      max_tokens: 4000,
       messages: messages,
       presence_penalty: 0,
       stream: true,
@@ -112,7 +114,7 @@ const getOpenAIStream = async (
 
           try {
             const json = JSON.parse(data)
-            const text = json.choices[0].delta.content
+            const text = json.choices[0]?.delta.content
             const queue = encoder.encode(text)
             controller.enqueue(queue)
           } catch (e) {
